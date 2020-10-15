@@ -1,0 +1,22 @@
+PyTorch中使用GPU加速模型非常简单，只要将模型和数据移动到GPU上，核心代码只有一下几行：
+# 定义模型：
+...
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model.to(device)  # 移动模型到cuda
+
+# 训练模型：
+...
+features = features.to(device)  # 移动数据到cuda
+labels = labels.to(device)  # 或者 labels = labels.cuda() if torch.cuda.is_available() else labels
+
+
+
+# 多GPU训练模型：
+# 定义模型：
+...
+if torch.cuda.device_count() > 1:
+    model = nn.DataParallel(model)  # 包装为并行风格模型
+
+# 训练模型：
+features = features.to(device)  # 移动数据到cuda
+labels = labels.to(device)

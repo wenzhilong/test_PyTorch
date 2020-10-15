@@ -1,0 +1,4 @@
+构建模型的三种方法：
+1、继承nn.Module基类构建自定义模型。
+2、使用nn.Sequential按层顺序构建模型。
+3、继承nn.Module基类构建模型，并辅助应用模型容器进行封装。（nn.Sequential、nn.ModuleList、nn.ModuleDict）

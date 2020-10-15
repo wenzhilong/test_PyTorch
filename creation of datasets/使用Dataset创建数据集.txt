@@ -1,0 +1,28 @@
+二、Dataset创建数据集常用的方法：
+1、使用torch.utils.data.TensorDataset根据Tensor创建数据集（numpy的array，Pandas的DataFrame需要先转换成Tensor）。
+2、使用torchvision.datasets.ImageFolder根据图片目录创建图片数据集。
+3、继承torch.utils.data.Dataset创建自定义数据集。
+此外，还可以通过：
+1、torch.utils.data.random_split将一个数据集分割成多份，常用于分割训练集、验证集和测试集。
+2、调用Dataset的加法运算符(+)将多个数据集合并成为一个数据集。
+
+TensorDataset可以用来对Tensor进行打包，每类通过Tensor的第一个维度进行索引，因此，该类中的Tensor的第一维必须相等。
+
+
+三、使用DataLoader加载数据集
+DataLoader能够控制batch_size的大小，DataLoader的函数签名如下：
+DataLoader(
+    dataset,
+    batch_size=1,
+    shuffle=False,
+    sampler=None,
+    batch_sampler=None,
+    num_workers=0,
+    collate_fn=None,
+    pin_memory=False,
+    drop_last=False,  # 是否丢弃最后一个样本数量不足batch_size批次数据
+    timeout=0,
+    worker_init_fn=None,
+    multiprocessing_context=None,
+)
+一般情况下，我们仅仅会配置dataset、batch_size、shuffle、num_workers、drop_last这5个参数，其他参数使用默认值即可。
